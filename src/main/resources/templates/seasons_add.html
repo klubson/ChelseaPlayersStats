@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Chelsea Players Stats</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1> Add Season</h1>
+</div>
+
+<div class="container">
+    <form action="#" th:action="@{/seasons/save}" th:object="${season}" method="POST">
+        <label for="start"> Start of the season: </label>
+        <input id="start" type="text" th:field="*{startyear}" class="form-control mb-4 col-4">
+        <label for="end"> End of the season: </label>
+        <input id="end" type="text" th:field="*{endyear}" class="form-control mb-4 col-4">
+        <button type="submit" class="btn btn-info col-2">Save Season</button>
+    </form>
+</div>
+<div class="container">
+    <a th:href="@{/}"> Back to Homepage </a>
+</div>
+
+</body>
+</html>
