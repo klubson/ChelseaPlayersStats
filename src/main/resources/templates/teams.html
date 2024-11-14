@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Chelsea Players Stats</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1> Teams </h1>
+</div>
+<div class="container">
+    <a th:href="@{/teams/add}" class="btn btn-primary btn-sm mb-3"> Add a Team </a>
+</div>
+<div class="container">
+    <table style="width:80%" border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>No.</th>
+            <th>Team Name</th>
+            <th>Stadium Name</th>
+            <th>City</th>
+            <th>Country</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="team:${allteamlist}">
+                <td> 0 </td>
+                <td th:text="${team.name}"></td>
+                <td th:text="${team.stadiumname}"></td>
+                <td th:text="${team.city}"></td>
+                <td th:text="${team.country}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <a th:href="@{/}"> Back to Homepage </a>
+</div>
+
+</body>
+</html>
