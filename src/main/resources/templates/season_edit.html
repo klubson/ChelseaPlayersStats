@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Chelsea Players Stats</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<script>
+    function validateSeasonForm(startyear, endyear) {
+    alert("startyear: " + startyear);
+    alert("endyear: " + endyear);
+    if (startyear === "") {
+        alert("Incorrect value of startyear!");
+        return false;
+    }
+    if (endyear === "") {
+        alert("Incorrect value of endyear!");
+        return false;
+    }
+    if (startyear > endyear){
+        alert("Endyear cannot be earlier than startyear!");
+        return false;
+    }
+    if (Math.abs(endyear - startyear) > 1){
+        alert("Difference between startyear and endyear must be exactly 1");
+        return false;
+    }
+    return true;
+}
+</script>
+
+<div class="container">
+    <h1> Add Season</h1>
+</div>
+
+<div class="container">
+    <form action="#" th:action="@{/seasons/save}" th:object="${season}" method="POST"
+          th:onsubmit="return validateSeasonForm(document.getElementById('start').value,document.getElementById('end').value);">
+        <label for="start"> Start of the season: </label>
+        <input id="start" type="number" th:field="*{startyear}" class="form-control mb-4 col-4">
+        <label for="end"> End of the season: </label>
+        <input id="end" type="number" th:field="*{endyear}" class="form-control mb-4 col-4">
+        <input type="hidden" th:field="*{seasonid}"/>
+        <button type="submit" class="btn btn-info col-2">Save Season</button>
+    </form>
+</div>
+<div class="container">
+    <a th:href="@{/seasons}"> Back to Seasons page </a>
+    <a th:href="@{/}"> Back to Homepage </a>
+</div>
+</body>
+</html>

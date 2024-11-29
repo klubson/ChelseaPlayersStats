@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SeasonRepository extends JpaRepository<Season, Integer> {
-
+    Season findByStartyear(Integer startyear);
+    Season findBySeasonid(Integer startyear);
 }
