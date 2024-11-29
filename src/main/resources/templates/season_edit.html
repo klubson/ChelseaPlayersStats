@@ -22,11 +22,11 @@
         alert("Incorrect value of endyear!");
         return false;
     }
-    if (startyear > endyear){
-        alert("Endyear cannot be earlier than startyear!");
+    if (Number(startyear) > Number(endyear)){
+        alert("End of the season cannot be earlier than start of the season!");
         return false;
     }
-    if (Math.abs(endyear - startyear) > 1){
+    if (Math.abs(Number(endyear) - Number(startyear)) != 1){
         alert("Difference between startyear and endyear must be exactly 1");
         return false;
     }
