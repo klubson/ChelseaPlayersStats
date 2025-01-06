@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Chelsea Players Stats</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<script>
+    function validateTeamForm(team, city, country) {
+    if (team.trim() == "") {
+        alert("Team name cannot be empty!");
+        return false;
+    }
+    if (city && !/[^a-zA-Z]/.test(city)) {
+        alert("City name must contain only letters!");
+        return false;
+    }
+    if (country && !/[^a-zA-Z]/.test(country)) {
+        alert("Country name must contain only letters!");
+        return false;
+    }
+    return true;
+}
+</script>
+
+<div class="container">
+    <h1> Edit Team</h1>
+</div>
+
+<div class="container">
+    <form action="#" th:action="@{/teams/save}" th:object="${team}" method="POST"
+          th:onsubmit="return validateTeamForm(
+          document.getElementById('name').value,
+          document.getElementById('city').value,
+          document.getElementById('country').country);">
+        <label for="name"> Team name: </label>
+        <input id="name" type="text" th:field="*{name}" class="form-control mb-4 col-4">
+        <label for="stadium"> Stadium Name: </label>
+        <input id="stadium" type="text" th:field="*{stadium}" class="form-control mb-4 col-4">
+        <label for="city"> City: </label>
+        <input id="city" type="text" th:field="*{city}" class="form-control mb-4 col-4">
+        <label for="country"> Country: </label>
+        <input id="country" type="text" th:field="*{country}" class="form-control mb-4 col-4">
+        <input type="hidden" th:field="*{teamid}"/>
+        <button type="submit" class="btn btn-info col-2">Save Team</button>
+    </form>
+</div>
+<div class="container">
+    <a th:href="@{/teams}"> Back to Teams page </a>
+    <a th:href="@{/}"> Back to Homepage </a>
+</div>
+
+</body>
+</html>
