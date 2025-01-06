@@ -17,13 +17,13 @@ public class SeasonController {
     @GetMapping("/seasons")
     public String viewSeasonsHomePage(Model model) {
         model.addAttribute("allseasonlist", seasonService.getAllSeason());
-        return "seasons";
+        return "seasons/seasons";
     }
     @GetMapping("/seasons/add")
     public String addSeason(Model model){
         Season season = new Season();
         model.addAttribute("season", season);
-        return "season_add";
+        return "seasons/season_add";
     }
 
     @PostMapping("/seasons/save")
@@ -36,11 +36,11 @@ public class SeasonController {
         return "redirect:/seasons";
     }
 
-    @GetMapping("/seasons/edit/{startyear}")
-    public String editSeason(@PathVariable String startyear, Model model){
-        Season season = seasonService.getSeasonByStartYear(Integer.valueOf(startyear));
+    @GetMapping("/seasons/edit/{seasonid}")
+    public String editSeason(@PathVariable String seasonid, Model model){
+        Season season = seasonService.getSeasonBySeasonid(Integer.valueOf(seasonid));
         model.addAttribute("season", season);
-        return "season_edit";
+        return "seasons/season_edit";
     }
 
     @GetMapping(value = "/seasons/delete/{seasonid}")

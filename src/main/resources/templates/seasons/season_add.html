@@ -12,14 +12,12 @@
 
 <script>
     function validateSeasonForm(startyear, endyear) {
-    alert("startyear: " + startyear);
-    alert("endyear: " + endyear);
     if (startyear === "") {
-        alert("Incorrect value of startyear!");
+        alert("Incorrect value of start of the season!");
         return false;
     }
     if (endyear === "") {
-        alert("Incorrect value of endyear!");
+        alert("Incorrect value of end of the season!");
         return false;
     }
     if (Number(startyear) > Number(endyear)){
@@ -40,18 +38,20 @@
 
 <div class="container">
     <form action="#" th:action="@{/seasons/save}" th:object="${season}" method="POST"
-          th:onsubmit="return validateSeasonForm(document.getElementById('start').value,document.getElementById('end').value);">
+          th:onsubmit="return validateSeasonForm(document.getElementById('start').value,
+          document.getElementById('end').value);">
         <label for="start"> Start of the season: </label>
-        <input id="start" type="number" th:field="*{startyear}" class="form-control mb-4 col-4">
+        <input id="start" type="number" min="0" th:field="*{startyear}" class="form-control mb-4 col-4">
         <label for="end"> End of the season: </label>
-        <input id="end" type="number" th:field="*{endyear}" class="form-control mb-4 col-4">
-        <input type="hidden" th:field="*{seasonid}"/>
+        <input id="end" type="number" min="0" th:field="*{endyear}" class="form-control mb-4 col-4">
         <button type="submit" class="btn btn-info col-2">Save Season</button>
+        <button type="reset" class="btn btn-info col-2">Reset</button>
     </form>
 </div>
 <div class="container">
     <a th:href="@{/seasons}"> Back to Seasons page </a>
     <a th:href="@{/}"> Back to Homepage </a>
 </div>
+
 </body>
 </html>
