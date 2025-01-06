@@ -1,6 +1,6 @@
 package klubson.chelseapoland.ChelseaPlayersStats.service;
 
-import klubson.chelseapoland.ChelseaPlayersStats.exception.SeasonAlreadyExistsException;
+import klubson.chelseapoland.ChelseaPlayersStats.exception.TeamAlreadyExistsException;
 import klubson.chelseapoland.ChelseaPlayersStats.modal.Team;
 import klubson.chelseapoland.ChelseaPlayersStats.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ public class TeamServiceImpl implements TeamService {
         if(team.getTeamid() != null || Objects.equals(getTeamByName(team.getName()), null)){
             teamRepository.save(team);
         } else {
-            throw new SeasonAlreadyExistsException("Team " + team.getName() + " already exists!");
+            throw new TeamAlreadyExistsException("Team " + team.getName() + " already exists!");
         }
     }
 
