@@ -13,7 +13,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Service
 public class SeasonServiceImpl implements SeasonService {
 
-    @Autowired private SeasonRepository seasonRepository;
+    @Autowired
+    private SeasonRepository seasonRepository;
 
     @Override
     public List<Season> getAllSeason() {

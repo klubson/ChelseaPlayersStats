@@ -50,9 +50,10 @@
         <button type="submit" class="btn btn-info col-2">Save Team</button>
     </form>
 </div>
+<br>
 <div class="container">
-    <a th:href="@{/teams}"> Back to Teams page </a>
-    <a th:href="@{/}"> Back to Homepage </a>
+    <a th:onclick="history.back()" class="btn btn-primary btn-sm mb-3"> Back to Teams page </a>
+    <a th:href="@{/}" class="btn btn-primary btn-sm mb-3"> Back to Homepage </a>
 </div>
 
 </body>

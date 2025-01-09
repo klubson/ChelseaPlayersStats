@@ -1,5 +1,6 @@
 package klubson.chelseapoland.ChelseaPlayersStats.controller;
 
+import klubson.chelseapoland.ChelseaPlayersStats.error.ObjectAlreadyExistsError;
 import klubson.chelseapoland.ChelseaPlayersStats.exception.TeamAlreadyExistsException;
 import klubson.chelseapoland.ChelseaPlayersStats.modal.Team;
 import klubson.chelseapoland.ChelseaPlayersStats.service.TeamServiceImpl;
@@ -30,11 +31,16 @@ public class TeamController {
     }
 
     @PostMapping("/teams/save")
-    public String saveTeam(@ModelAttribute("team") Team team){
+    public String saveTeam(@ModelAttribute("team") Team team, Model model){
         try {
             teamService.save(team);
         } catch (TeamAlreadyExistsException e) {
-            return "redirect:/teams/add";
+            ObjectAlreadyExistsError error = new ObjectAlreadyExistsError(
+                    "Error while saving Team",
+                    e.getMessage(),
+                    "Back to Teams page");
+            model.addAttribute("error", error);
+            return "error_page";
         }
         return "redirect:/teams";
     }

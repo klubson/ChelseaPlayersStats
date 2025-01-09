@@ -49,9 +49,10 @@
         <button type="submit" class="btn btn-info col-2">Save Season</button>
     </form>
 </div>
+<br>
 <div class="container">
-    <a th:href="@{/seasons}"> Back to Seasons page </a>
-    <a th:href="@{/}"> Back to Homepage </a>
+    <a th:onclick="history.back()" class="btn btn-primary btn-sm mb-3"> Back to Seasons page </a>
+    <a th:href="@{/}" class="btn btn-primary btn-sm mb-3"> Back to Homepage </a>
 </div>
 </body>
 </html>

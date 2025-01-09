@@ -1,5 +1,6 @@
 package klubson.chelseapoland.ChelseaPlayersStats.controller;
 
+import klubson.chelseapoland.ChelseaPlayersStats.error.ObjectAlreadyExistsError;
 import klubson.chelseapoland.ChelseaPlayersStats.exception.SeasonAlreadyExistsException;
 import klubson.chelseapoland.ChelseaPlayersStats.modal.Season;
 import klubson.chelseapoland.ChelseaPlayersStats.service.SeasonServiceImpl;
@@ -27,11 +28,16 @@ public class SeasonController {
     }
 
     @PostMapping("/seasons/save")
-    public String saveSeason(@ModelAttribute("season") Season season){
+    public String saveSeason(@ModelAttribute("season") Season season, Model model){
         try {
             seasonService.save(season);
         } catch (SeasonAlreadyExistsException e) {
-            return "redirect:/seasons/add";
+            ObjectAlreadyExistsError error = new ObjectAlreadyExistsError(
+                    "Error while saving Season",
+                    e.getMessage(),
+                    "Back to Seasons page");
+            model.addAttribute("error", error);
+            return "error_page";
         }
         return "redirect:/seasons";
     }

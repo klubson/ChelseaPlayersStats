@@ -16,11 +16,11 @@
         alert("Team name cannot be empty!");
         return false;
     }
-    if (!/[^a-zA-Z]/.test(city)) {
+    if (city && !/[^a-zA-Z]/.test(city)) {
         alert("City name must contain only letters!");
         return false;
     }
-    if (!/[^a-zA-Z]/.test(country)) {
+    if (country && !/[^a-zA-Z]/.test(country)) {
         alert("Country name must contain only letters!");
         return false;
     }
@@ -37,11 +37,11 @@
           th:onsubmit="return validateTeamForm(
           document.getElementById('name').value,
           document.getElementById('city').value,
-          document.getElementById('city').country);">
+          document.getElementById('country').value);">
         <label for="name"> Team name: </label>
         <input id="name" type="text" th:field="*{name}" class="form-control mb-4 col-4">
-        <label for="stadiumname"> Stadium Name: </label>
-        <input id="stadiumname" type="text" th:field="*{stadiumname}" class="form-control mb-4 col-4">
+        <label for="stadium"> Stadium Name: </label>
+        <input id="stadium" type="text" th:field="*{stadium}" class="form-control mb-4 col-4">
         <label for="city"> City: </label>
         <input id="city" type="text" th:field="*{city}" class="form-control mb-4 col-4">
         <label for="country"> Country: </label>
@@ -50,9 +50,10 @@
         <button type="reset" class="btn btn-info col-2">Reset</button>
     </form>
 </div>
+<br>
 <div class="container">
-    <a th:href="@{/teams}"> Back to Teams page </a>
-    <a th:href="@{/}"> Back to Homepage </a>
+    <a th:onclick="history.back()" class="btn btn-primary btn-sm mb-3"> Back to Teams page </a>
+    <a th:href="@{/}" class="btn btn-primary btn-sm mb-3"> Back to Homepage </a>
 </div>
 
 </body>

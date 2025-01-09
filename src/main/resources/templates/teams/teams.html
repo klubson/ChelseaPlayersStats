@@ -65,7 +65,7 @@
                     <a th:href="@{/teams/edit/{teamid}(teamid=${team.teamid})}"
                        class="btn btn-primary btn-sm mb-3"
                        th:id="editButton"> Edit </a>
-                    <a th:href="@{/seasons/delete/{teamid}(teamid=${team.teamid})}"
+                    <a th:href="@{/teams/delete/{teamid}(teamid=${team.teamid})}"
                        class="btn btn-primary btn-sm mb-3"
                        th:id="deleteButton"
                        th:attr="team-name=${team.name}"> Delete </a>
@@ -74,8 +74,9 @@
         </tbody>
     </table>
 </div>
+<br>
 <div class="container">
-    <a th:href="@{/}"> Back to Homepage </a>
+    <a th:href="@{/}" class="btn btn-primary btn-sm mb-3"> Back to Homepage </a>
 </div>
 
 </body>
